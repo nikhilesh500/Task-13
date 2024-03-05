@@ -11,11 +11,12 @@
 
 <script setup>
 const { id } = useRoute().params
-const uri = 'https://fakestoreapi.com/products/' + id 
-// const uri = `https://fakestoreapi.com/products/${id}` 
-
-// fetch the product
+/*
+const uri = `https://fakestoreapi.com/products/${id}` 
 const { data: product } = await useFetch(uri, { key: id })
+*/
+const { data: product } = await useFetch(`https://dummyjson.com/products/${id}`, { key: id })
+
 
 if (!product.value) {
   throw createError({ statusCode: 404, statusMessage: "Product not found", fatal: true });

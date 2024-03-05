@@ -2,7 +2,7 @@
   <div class="card">
     <div class="grid grid-cols-2 gap-10">
       <div class="p-7">
-        <img :src="product.image" alt="product" class="mx-auto my-7" />
+        <img :src="product.images[0]" alt="product" class="mx-auto my-7" />
       </div>
       <div class="p-7">
         <h2 class="text-4xl my-7">{{ product.title }}</h2>
@@ -40,7 +40,7 @@ const addToCart = () => {
     cart.value.find(c => {
       if (c.id === product.id) {
         c.quantity++
-        console.log(c.quantity);
+        // console.log(c.quantity);
       }
     })
   } 
@@ -49,7 +49,7 @@ const addToCart = () => {
       id: product.id,
       title: product.title,
       price: product.price,
-      image: product.image,
+      image: product.images[0],
       quantity: 1
     })
   }

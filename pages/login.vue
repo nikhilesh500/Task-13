@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login ">
     <div class="card w-4/12 mx-auto py-10 ">
       <h1 class="text-center text-4xl my-8">Welcome Back</h1>
       <form @submit.prevent="onSubmit" class="flex flex-col px-8 ">
@@ -24,42 +24,50 @@
 // definePageMeta({
 //   layout: 'user'
 // })
-const email = ref('')
-const password = ref('')
+const email = ref('nikhil@gmail.com')
+const password = ref('password')
+
 const isLoading = ref(false)
 const err = ref('')
 const auth = useAuth()
 const users = useProfiles()
-console.log(users.value)
 console.log(email.value)
 
-
 const onSubmit = () => {
+  const data = {
+    email: email.value,
+    password: password.value
+  }
+
   isLoading.value = true
-  if (email.value && password.value) {
-    for (let user of users.value) {
-      if (user.email === email.value) {
-        console.log('Username Matched')
-        if (user.password === password.value) {
-          isLoading.value = false
-          console.log('Password Matched')
-          auth.value.isAuthenticated = true;
-          navigateTo('/')
-          email.value = ''
-          password.value = ''
-          break;
-        }
-        else {
-          isLoading.value = false
-          err.value = 'Incorrect Password'
-          break;
+  if (data.email && data.password) {
+    setTimeout(() =>{
+      for (let user of users.value) {
+        if (user.email === data.email) {
+          console.log('Username Matched')
+          if (user.password === data.password) {
+            console.log('Password Matched')
+            
+            auth.value.isAuthenticated = true;
+            navigateTo('/')
+            
+            isLoading.value = false
+            data.email = ''
+            data.password = ''
+            break;
+          }
+          else {
+            isLoading.value = false
+            err.value = 'Incorrect Password, please try again'
+            break;
+          }
         }
       }
-    }
-    if (isLoading.value) {
-      isLoading.value = false
-      err.value = 'User not found'
-    }
+      if (isLoading.value) {
+        isLoading.value = false
+        err.value = 'User not found, Invalid Credentials'
+      }
+    }, 1000)
   }
   else {
     isLoading.value = false
@@ -67,42 +75,60 @@ const onSubmit = () => {
   }
 }
 
+/*
+API login
+-----------------------------------------------
+const url = 'https://reqres.in/api/login'
+const form = reactive({
+  email: 'eve.holt@reqres.in',
+  password: 'cityslicka',
+})
+const err = ref(null);
 
-// const url = 'https://reqres.in/api/login'
-// const form = reactive({
-//   email: 'eve.holt@reqres.in',
-//   password: 'cityslicka',
-// })
-// const err = ref(null);
-
-// const onSubmit = async() => {
-//   if (isLoading.value) return;
-//   isLoading.value = true;
-//   // console.log(email.value, password.value);
-//   const { data, error } = await useFetch(url,{
-//     method: 'post',
-//     body: form,
-//   });
-
-//   isLoading.value = false;
-//   if (error.value){
-//     err.value = error.value.data.error;
-//     return;
-//   };
-
-//   const auth = useAuth()
-//   auth.value.isAuthenticated = true;
-
-//   navigateTo('/')
+const onSubmit = async() => {
   
-//   // console.log(data.value, error.value.data);
-//   email.value = ''
-//   password.value = ''
+  if (isLoading.value) return;
+  isLoading.value = true;
+  console.log(email.value, password.value);
+  const { data, error } = await useFetch(url,{
+    method: 'post',
+    body: form,
+  });
 
-// };
+  isLoading.value = false;
+  if (error.value){
+    err.value = error.value.data.error;
+    return;
+  };
+
+  const auth = useAuth()
+  auth.value.isAuthenticated = true;
+
+  navigateTo('/')
+  
+  console.log(data.value, error.value.data);
+  email.value = ''
+  password.value = ''
+
+};
+
+*/
 
 </script>
 
 <style scoped>
+.login {
+  background: url(https://img.freepik.com/free-psd/empty-room-wall-mockup-psd-modern-interior-design_53876-129121.jpg?w=1380&t=st=1709642213~exp=1709642813~hmac=14842109f641212e007ea3d0a75dc472f9775c98f5b256912e2ceb3f0f47fb51);
+  background-size: cover;
+  display: flex; /* Add flex display */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  height: 90vh; /* Set height to viewport height */
+}
 
+.card {
+  width: 50%; /* Adjust width as needed */
+  max-width: 400px; /* Limit maximum width */
+  height: auto; /* Let height adjust based on content */
+}
 </style>

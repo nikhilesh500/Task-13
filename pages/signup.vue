@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="signup">
     <div class="card w-4/12 mx-auto py-10 ">
       <h1 class="text-center text-4xl my-8">Join with us</h1>
       <form @submit.prevent="onSubmit" class="flex flex-col px-8 ">
@@ -27,51 +27,71 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 const username = ref('');
 const email = ref('');
 const password = ref('');
+
+const { signup } = useNuxtApp(); // Use signup function directly
 const registered = ref(null);
 const exists = ref(null);
-const { signup } = useNuxtApp(); // Use signup function directly
+const tryRegister = ref(true);
 
 const onSubmit = ()=> {
+  
   const data = { name: username.value, email: email.value, password: password.value };
-  const { registered: isRegistered, exists: userExists } = signup(data);
-  registered.value = isRegistered;
+  const { exists: userExists } = signup(data, tryRegister);
+  console.log(tryRegister);
+  
   exists.value = userExists;
+  registered.value = !userExists;
 
   username.value = '';
   email.value = '';
   password.value = '';
 };
+/*
 
-// const onSubmit = () => {
-//   const data = {
-//     name: username.value,
-//     email: email.value,
-//     password: password.value
-//   }
+The following used as a Plugin
+-------------------------------------------
+const onSubmit = () => {
+  const data = {
+    name: username.value,
+    email: email.value,
+    password: password.value
+  }
 
-//   for (let user of users.value) {
-//     if ((user.name === username.value) || (user.email === email.value)) {
-//       registered.value = false;
-//       exists.value = true;
-//       break;
-//     }
-//   }
-//   if (!exists.value) {
-//     users.value.push(data);
-//     registered.value = true;
-//     exists.value = false;
-//   }
+  for (let user of users.value) {
+    if (user.email === email.value) {
+      exists.value = true;
+      break;
+    }
+  }
+  if (!exists.value) {
+    users.value.push(data);
+    exists.value = false;
+  }
   
-//   username.value = '';
-//   email.value = '';
-//   password.value = '';
-// }
+  username.value = '';
+  email.value = '';
+  password.value = '';
+} 
+
+*/
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.signup {
+  background: url(https://img.freepik.com/free-psd/empty-room-wall-mockup-psd-modern-interior-design_53876-129121.jpg?w=1380&t=st=1709642213~exp=1709642813~hmac=14842109f641212e007ea3d0a75dc472f9775c98f5b256912e2ceb3f0f47fb51);
+  background-size: cover;
+  display: flex; /* Add flex display */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  height: 90vh; /* Set height to viewport height */
+}
 
+.card {
+  width: 50%; /* Adjust width as needed */
+  max-width: 400px; /* Limit maximum width */
+  height: auto; /* Let height adjust based on content */
+}
 </style>

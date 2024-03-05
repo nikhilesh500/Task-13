@@ -1,6 +1,6 @@
 <template>
   <nav class="container mx-auto p-4 flex justify-between">
-    <NuxtLink to="/" class="font-bold">Story</NuxtLink>
+    <NuxtLink to="/" class="font-bold text-xl">Store</NuxtLink>
     <ul class="flex gap-4">
       <p>{{ auth.isAuthenticated }}</p>
       <li><NuxtLink to="/">Home</NuxtLink></li>
