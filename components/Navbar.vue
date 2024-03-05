@@ -2,7 +2,7 @@
   <nav class="container mx-auto p-4 flex justify-between">
     <NuxtLink to="/" class="font-bold text-xl">Store</NuxtLink>
     <ul class="flex gap-4">
-      <p>{{ auth.isAuthenticated }}</p>
+      <!-- <p>{{ auth.isAuthenticated }}</p> -->
       <li><NuxtLink to="/">Home</NuxtLink></li>
       <!-- <p>Total Route Changed: {{ pageVisitCount }}</p> -->
       <div class="flex gap-6" v-if="auth.isAuthenticated" >
