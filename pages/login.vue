@@ -24,8 +24,8 @@
 // definePageMeta({
 //   layout: 'user'
 // })
-const email = ref('nikhil@gmail.com')
-const password = ref('password')
+const email = ref('')
+const password = ref('')
 
 const isLoading = ref(false)
 const err = ref('')
