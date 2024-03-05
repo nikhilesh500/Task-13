@@ -2,18 +2,19 @@
   <div class="home min-h-screen flex items-center justify-center">
     <div class="card max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg">
       <h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">
-        <NuxtLink to="/login" >Welcome to Our Store</NuxtLink>
+        Welcome to Our Store
       </h1>
       <p class="text-lg text-gray-600 mb-8 text-center">Explore our amazing products and services.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-blue-500 text-white p-6 rounded-lg">
           <h2 class="text-2xl font-semibold mb-4">
-            <NuxtLink to="/signup" >Shop with us</NuxtLink>
+            <NuxtLink to="/login" >Shop with us</NuxtLink>
           </h2>
           <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
         <div class="bg-green-500 text-white p-6 rounded-lg">
-          <h2 class="text-2xl font-semibold mb-4">Explore Our Products</h2>
+          <h2 class="text-2xl font-semibold mb-4">
+            <NuxtLink to="/signup" >Explore Our Products</NuxtLink></h2>
           <p class="text-lg">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
       </div>
