@@ -118,7 +118,7 @@ const onSubmit = async() => {
 
 <style scoped>
 .login {
-  background: url(https://img.freepik.com/free-psd/empty-room-wall-mockup-psd-modern-interior-design_53876-129121.jpg?w=1380&t=st=1709642213~exp=1709642813~hmac=14842109f641212e007ea3d0a75dc472f9775c98f5b256912e2ceb3f0f47fb51);
+  background: url(https://img.freepik.com/free-photo/hand-painted-watercolor-background_24972-2223.jpg?w=1380&t=st=1709644858~exp=1709645458~hmac=540f5270a311e1572b78b14e3eb54c36321a36b4405d1f532f112c18e44e43f2);
   background-size: cover;
   display: flex; /* Add flex display */
   justify-content: center; /* Horizontally center */
